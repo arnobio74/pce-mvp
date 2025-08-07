@@ -6,133 +6,71 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f4f4f4;
-      color: #333;
+      margin: 40px;
+      background-color: #f9f9f9;
     }
-
     header {
-      background-color: #002b5c;
-      color: white;
       text-align: center;
-      padding: 30px 20px;
+      margin-bottom: 30px;
     }
-
-    header img {
-      height: 80px;
-      margin-bottom: 10px;
-    }
-
-    header h1 {
-      margin: 5px 0;
-      font-size: 28px;
-    }
-
-    header h2 {
-      margin: 5px 0;
-      font-size: 22px;
-      font-weight: normal;
-    }
-
-    header p {
-      font-style: italic;
-      margin: 10px 0 20px;
-    }
-
-    nav {
-      margin-top: 20px;
-    }
-
     select, button {
       padding: 10px;
       font-size: 16px;
-      margin: 5px;
-      border-radius: 5px;
-      border: none;
+      margin-right: 10px;
     }
-
-    select {
-      background-color: #ffffff;
-      color: #002b5c;
-    }
-
-    button {
-      background-color: #0073e6;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #005bb5;
-    }
-
     #editor {
-      background-color: white;
-      margin: 30px auto;
+      margin-top: 30px;
       padding: 20px;
-      max-width: 800px;
       border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    #editor h3 {
-      margin-bottom: 10px;
-    }
-
-    textarea {
-      width: 100%;
-      height: 500px;
-      font-size: 16px;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      resize: vertical;
+      background-color: #fff;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <img src="../img/logo_tjam.png" alt="Logo TJAM" style="height: 80px;">
-    <h1>Tribunal de Justiça do Amazonas</h1>
-    <h2>Projeto Cidadão Entende</h2>
+    <img src="logo-tjam.png" alt="Logo TJAM" style="height: 80px;">
+    <h1>Projeto Cidadão Entende</h1>
     <p>Descomplicando o jurídico para o cidadão comum</p>
-
-    <nav>
-      <select id="documentoSelecionado">
-        <option value="">Selecione um documento</option>
-        <option value="citacao">Citação</option>
-        <option value="intimacao">Intimação</option>
-        <option value="mandado">Mandado</option>
-        <option value="sentenca">Sentença</option>
-      </select>
-      <button onclick="carregarDocumento()">CRIAR DOCUMENTO</button>
-    </nav>
   </header>
+
+  <section>
+    <label for="documentoSelecionado">Escolha o tipo de documento:</label>
+    <select id="documentoSelecionado">
+      <option value="">-- Selecione --</option>
+      <option value="citacao">Citação</option>
+      <option value="intimacao">Intimação</option>
+      <option value="sentenca">Sentença</option>
+    </select>
+    <button onclick="carregarDocumento()">CRIAR DOCUMENTO</button>
+  </section>
 
   <section id="editor">
     <h3>Área de Edição</h3>
-    <textarea id="conteudoDocumento" placeholder="O conteúdo do documento aparecerá aqui..."></textarea>
+    <div id="conteudoDocumento">Selecione um documento para começar.</div>
   </section>
 
   <script>
     function carregarDocumento() {
-  const tipo = document.getElementById("documentoSelecionado").value;
-  const editor = document.getElementById("conteudoDocumento");
+      const tipo = document.getElementById("documentoSelecionado").value;
+      const editor = document.getElementById("conteudoDocumento");
 
-  fetch(`${tipo}.html`)
-    .then(response => response.text())
-    .then(data => {
-      editor.value = data;
-    })
-    .catch(error => {
-      editor.value = "Erro ao carregar o documento.";
-      console.error(error);
-    });
-}
-      editor.value = modelos[tipo] || "Selecione um documento válido.";
+      if (!tipo) {
+        editor.innerHTML = "<p>Por favor, selecione um tipo de documento.</p>";
+        return;
+      }
+
+      fetch(`${tipo}.html`)
+        .then(response => {
+          if (!response.ok) throw new Error("Documento não encontrado.");
+          return response.text();
+        })
+        .then(data => {
+          editor.innerHTML = data;
+        })
+        .catch(error => {
+          editor.innerHTML = `<p>Erro ao carregar o documento: ${error.message}</p>`;
+        });
     }
   </script>
-
 </body>
 </html>
