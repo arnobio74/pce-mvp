@@ -4,16 +4,39 @@
   <meta charset="UTF-8">
   <title>Intimação</title>
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .cabecalho input {
+      border: none;
+      border-bottom: 1px solid #000;
+      font-size: 16px;
+      padding: 2px 5px;
+      margin-left: 5px;
+    }
+    .cabecalho p {
+      font-size: 18px;
+      margin: 10px 0;
+      font-family: Arial, sans-serif;
+    }
+    .conteudo {
+      font-size: 18px;
+      font-family: Georgia, serif;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>O que é Intimação?</h1>
-    <a href="index.html">Voltar ao início</a>
-  </header>
-  <main>
-    <p>A intimação é o aviso oficial para que alguém tome conhecimento de um ato do processo, como uma decisão ou audiência. Serve para garantir que a pessoa saiba e possa agir.</p>
-  </main>
-  <script src="../js/script.js"></script>
+
+  <div class="cabecalho">
+    <p>AO JUÍZO DA <input type="text" placeholder="ª Vara" style="width: 100px;"> DA COMARCA DE <input type="text" placeholder="Cidade" style="width: 200px;"></p>
+    <p>Processo nº <input type="text" placeholder="Número do processo" style="width: 200px;"></p>
+    <p>Destinatário: <input type="text" placeholder="Nome do destinatário" style="width: 300px;"></p>
+  </div>
+
+  <div class="conteudo">
+    <h3>Intimação</h3>
+    <p>Fica o destinatário intimado para tomar ciência do conteúdo da decisão proferida nos autos.</p>
+    <p><strong>Intime-se.</strong></p>
+  </div>
+
 </body>
 </html>
-
