@@ -1,36 +1,135 @@
-<header style="text-align: center; padding: 20px;">
-  <img src="logo-tjam.png" alt="Logo TJAM" style="height: 80px;">
-  <h1>Tribunal de Justiça do Amazonas</h1>
-  <h2>Projeto Cidadão Entende</h2>
-  <p><em>Descomplicando o jurídico para o cidadão comum</em></p>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Projeto Cidadão Entende - TJAM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
 
-  <nav>
-    <select id="documentoSelecionado">
-      <option value="">Selecione um documento</option>
-      <option value="citacao">Citação</option>
-      <option value="intimacao">Intimação</option>
-      <option value="mandado">Mandado</option>
-      <option value="sentenca">Sentença</option>
-    </select>
-    <button onclick="carregarDocumento()">CRIAR DOCUMENTO</button>
-  </nav>
-</header>
-<section id="editor" style="margin-top: 30px; padding: 20px; border: 1px solid #ccc;">
-  <h3>Área de Edição</h3>
-  <textarea id="conteudoDocumento" rows="15" style="width: 100%;"></textarea>
-</section>
-<script>
-  function carregarDocumento() {
-    const tipo = document.getElementById("documentoSelecionado").value;
-    const editor = document.getElementById("conteudoDocumento");
+    header {
+      background-color: #002b5c;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
 
-    const modelos = {
-      citacao: "Modelo de Citação: [texto explicativo aqui]",
-      intimacao: "Modelo de Intimação: [texto explicativo aqui]",
-      mandado: "Modelo de Mandado: [texto explicativo aqui]",
-      sentenca: "Modelo de Sentença: [texto explicativo aqui]"
-    };
+    header img {
+      height: 80px;
+      margin-bottom: 10px;
+    }
 
-    editor.value = modelos[tipo] || "Selecione um documento válido.";
-  }
-</script>
+    header h1 {
+      margin: 5px 0;
+      font-size: 28px;
+    }
+
+    header h2 {
+      margin: 5px 0;
+      font-size: 22px;
+      font-weight: normal;
+    }
+
+    header p {
+      font-style: italic;
+      margin: 10px 0 20px;
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    select {
+      background-color: #ffffff;
+      color: #002b5c;
+    }
+
+    button {
+      background-color: #0073e6;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005bb5;
+    }
+
+    #editor {
+      background-color: white;
+      margin: 30px auto;
+      padding: 20px;
+      max-width: 800px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    #editor h3 {
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 300px;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo-tjam.png" alt="Logo TJAM">
+    <h1>Tribunal de Justiça do Amazonas</h1>
+    <h2>Projeto Cidadão Entende</h2>
+    <p>Descomplicando o jurídico para o cidadão comum</p>
+
+    <nav>
+      <select id="documentoSelecionado">
+        <option value="">Selecione um documento</option>
+        <option value="citacao">Citação</option>
+        <option value="intimacao">Intimação</option>
+        <option value="mandado">Mandado</option>
+        <option value="sentenca">Sentença</option>
+      </select>
+      <button onclick="carregarDocumento()">CRIAR DOCUMENTO</button>
+    </nav>
+  </header>
+
+  <section id="editor">
+    <h3>Área de Edição</h3>
+    <textarea id="conteudoDocumento" placeholder="O conteúdo do documento aparecerá aqui..."></textarea>
+  </section>
+
+  <script>
+    function carregarDocumento() {
+      const tipo = document.getElementById("documentoSelecionado").value;
+      const editor = document.getElementById("conteudoDocumento");
+
+      const modelos = {
+        citacao: "Modelo de Citação: [Insira aqui o conteúdo explicativo da citação]",
+        intimacao: "Modelo de Intimação: [Insira aqui o conteúdo explicativo da intimação]",
+        mandado: "Modelo de Mandado: [Insira aqui o conteúdo explicativo do mandado]",
+        sentenca: "Modelo de Sentença: [Insira aqui o conteúdo explicativo da sentença]"
+      };
+
+      editor.value = modelos[tipo] || "Selecione um documento válido.";
+    }
+  </script>
+
+</body>
+</html>
