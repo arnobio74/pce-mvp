@@ -117,16 +117,19 @@
 
   <script>
     function carregarDocumento() {
-      const tipo = document.getElementById("documentoSelecionado").value;
-      const editor = document.getElementById("conteudoDocumento");
+  const tipo = document.getElementById("documentoSelecionado").value;
+  const editor = document.getElementById("conteudoDocumento");
 
-      const modelos = {
-        citacao: "Modelo de Citação: [Insira aqui o conteúdo explicativo da citação]",
-        intimacao: "Modelo de Intimação: [Insira aqui o conteúdo explicativo da intimação]",
-        mandado: "Modelo de Mandado: [Insira aqui o conteúdo explicativo do mandado]",
-        sentenca: "Modelo de Sentença: [Insira aqui o conteúdo explicativo da sentença]"
-      };
-
+  fetch(`${tipo}.html`)
+    .then(response => response.text())
+    .then(data => {
+      editor.value = data;
+    })
+    .catch(error => {
+      editor.value = "Erro ao carregar o documento.";
+      console.error(error);
+    });
+}
       editor.value = modelos[tipo] || "Selecione um documento válido.";
     }
   </script>
