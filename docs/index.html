@@ -19,3 +19,18 @@
   <h3>Área de Edição</h3>
   <textarea id="conteudoDocumento" rows="15" style="width: 100%;"></textarea>
 </section>
+<script>
+  function carregarDocumento() {
+    const tipo = document.getElementById("documentoSelecionado").value;
+    const editor = document.getElementById("conteudoDocumento");
+
+    const modelos = {
+      citacao: "Modelo de Citação: [texto explicativo aqui]",
+      intimacao: "Modelo de Intimação: [texto explicativo aqui]",
+      mandado: "Modelo de Mandado: [texto explicativo aqui]",
+      sentenca: "Modelo de Sentença: [texto explicativo aqui]"
+    };
+
+    editor.value = modelos[tipo] || "Selecione um documento válido.";
+  }
+</script>
